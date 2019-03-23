@@ -32,7 +32,7 @@ export class UserService {
         data => {
           this.currentUserSubject.next({
             id: data,
-            username: credentials.username,
+            email: credentials.username,
             password: credentials.password
           } as User);
           this.isLoggedInSubject.next(true);
