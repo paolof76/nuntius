@@ -2,20 +2,20 @@
 <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
   <mz-input-container>
     <input mz-input
-           formControlName="email"
-           label="E-Mail"
+           id="username"
+           formControlName="username"
+           label="Username"
            length="150"
-           id="email"
            validate="true"
            [disabled]="isSubmitting"
-           type="email"/>
+           type="text"/>
   </mz-input-container>
   <mz-input-container>
     <input mz-input
+           id="password"
            formControlName="password"
            label="Password"
            length="150"
-           id="password"
            [disabled]="isSubmitting"
            type="password"/>
   </mz-input-container>

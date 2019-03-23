@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {HttpTokenInterceptor} from './interceptors';
 import {
+  AccountService,
   UserService
 } from './services';
 import {ApiService} from './services/api.service';
@@ -12,7 +13,8 @@ import {ApiService} from './services/api.service';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
     ApiService,
-    UserService
+    UserService,
+    AccountService
   ],
   imports: [
     CommonModule

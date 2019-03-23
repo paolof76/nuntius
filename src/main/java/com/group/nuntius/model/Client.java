@@ -21,8 +21,8 @@ public class Client {
 
     private String password;
 
-    @OneToMany(targetEntity=Account.class, mappedBy="client", fetch=FetchType.EAGER)
-    private List<Account> accounts;
+    @OneToMany(targetEntity= BankAccount.class, mappedBy="client", fetch=FetchType.EAGER)
+    private List<BankAccount> bankAccounts;
 
     public Client() {
     }
@@ -80,12 +80,12 @@ public class Client {
         return address;
     }
 
-    public List<Account> getAccounts() {
-        return accounts;
+    public List<BankAccount> getBankAccounts() {
+        return bankAccounts;
     }
 
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
+    public void setBankAccounts(List<BankAccount> bankAccounts) {
+        this.bankAccounts = bankAccounts;
     }
 
     @Override

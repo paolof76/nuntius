@@ -16,7 +16,7 @@ public class Card {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
-    private Account account;
+    private BankAccount bankAccount;
 
     public Card() {
     }
@@ -59,12 +59,12 @@ public class Card {
         this.client = client;
     }
 
-    public Account getAccount() {
-        return account;
+    public BankAccount getBankAccount() {
+        return bankAccount;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
     }
 
     @Override
