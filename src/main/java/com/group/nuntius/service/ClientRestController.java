@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class ClientRestController {
 
     @Autowired
-    ClientRepository clientRepository;
+    private ClientRepository clientRepository;
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public Client getById(@RequestParam Long id) {
@@ -20,6 +20,5 @@ public class ClientRestController {
     public void create(Client client) {
         clientRepository.save(client);
     }
-
 
 }

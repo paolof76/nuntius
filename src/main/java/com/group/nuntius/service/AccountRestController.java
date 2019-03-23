@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +28,11 @@ public class AccountRestController {
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public Account info(@RequestParam("id") Long id) {
         return accountRepository.findById(id).orElse(null);
+    }
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public List<Account> getAll() {
+        return userService.getClient().getAccounts();
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
