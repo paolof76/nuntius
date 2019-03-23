@@ -19,8 +19,6 @@ public class PromotionRestController {
     private PromotionRepository promotionRepository;
     @Autowired
     private InstitutionRepository institutionRepository;
-    @Autowired
-    private UserService userService;
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public Promotion info(@RequestParam("id") Long id) {
