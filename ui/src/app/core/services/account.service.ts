@@ -8,4 +8,8 @@ export class AccountService {
     private apiService: ApiService
   ) {
   }
+
+  addAccount(userId: number, institutionId: number){
+    this.apiService.get()
+  }
 }

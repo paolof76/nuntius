@@ -7,7 +7,7 @@ import {ShowLoggedInDirective} from './show-logged-in.directive';
 import {
   MzButtonModule,
   MzCardModule,
-  MzDropdownModule,
+  MzDropdownModule, MzIconModule,
   MzInputModule,
   MzSelectModule,
   MzSpinnerModule
@@ -39,6 +39,7 @@ import {
     MzSelectModule,
     MzDropdownModule,
     MzSpinnerModule,
+    MzIconModule,
     ShowLoggedInDirective
   ],
   declarations: [ShowLoggedInDirective],
