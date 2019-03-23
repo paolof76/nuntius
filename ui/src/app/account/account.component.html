@@ -8,7 +8,32 @@
 <mz-card
   [horizontal]="true"
   [hoverable]="true">
-
+  <mz-card-title>
+    Create new Account
+  </mz-card-title>
+  <mz-card-content>
+    <form id="accountForm" [formGroup]="accountForm" (ngSubmit)="submitForm()">
+      <mz-select-container>
+        <select mz-select
+                id="options-select"
+                [label]="'Institution'"
+                [placeholder]="'Placeholder'">
+          <optgroup label="Swiss Banks">
+            <option class="left circle" value="1">UBS</option>
+            <option class="left circle" value="2">CreditSuisse</option>
+          </optgroup>
+          <optgroup label="European Banks">
+            <option class="left circle" value="3">Deutsche Bank</option>
+          </optgroup>
+        </select>
+      </mz-select-container>
+    </form>
+  </mz-card-content>
+  <mz-card-action>
+    <button mz-button form="accountForm" [disabled]="!accountForm.valid">
+      Add!
+    </button>
+  </mz-card-action>
 </mz-card>
 
 

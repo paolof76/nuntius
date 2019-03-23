@@ -4,8 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {ShowLoggedInDirective} from './show-logged-in.directive';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MzButtonModule, MzDropdownModule} from 'ngx-materialize';
+import {MzButtonModule, MzCardModule, MzDropdownModule, MzInputModule, MzSelectModule} from "ngx-materialize";
 
 @NgModule({
   imports: [
@@ -13,7 +12,12 @@ import {MzButtonModule, MzDropdownModule} from 'ngx-materialize';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    MzInputModule,
+    MzButtonModule,
+    MzCardModule,
+    MzSelectModule,
+    MzDropdownModule
   ],
   exports: [
     CommonModule,
@@ -21,10 +25,12 @@ import {MzButtonModule, MzDropdownModule} from 'ngx-materialize';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-    ShowLoggedInDirective,
-    BrowserAnimationsModule,
+    MzInputModule,
+    MzButtonModule,
+    MzCardModule,
+    MzSelectModule,
     MzDropdownModule,
-    MzButtonModule
+    ShowLoggedInDirective
   ],
   declarations: [ShowLoggedInDirective],
 })
