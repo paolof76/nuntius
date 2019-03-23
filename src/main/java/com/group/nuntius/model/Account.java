@@ -10,7 +10,23 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long institutionId;
+    private Institution institution;
     private String iban;
-    private Long clientId;
+    private Client client;
+
+    public Account(Institution institution, String iban, Client client) {
+        this.institution = institution;
+        this.iban = iban;
+        this.client = client;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", institution=" + institution +
+                ", iban='" + iban + '\'' +
+                ", client=" + client +
+                '}';
+    }
 }

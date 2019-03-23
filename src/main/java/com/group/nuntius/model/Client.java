@@ -15,13 +15,13 @@ public class Client {
     private String name;
     private String surname;
     private String email;
-    private String adress;
+    private String address;
 
-    public Client(String name, String surname, String email, String adress) {
+    public Client(String name, String surname, String email, String address) {
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.adress = adress;
+        this.address = address;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Client {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
-                ", adress='" + adress + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

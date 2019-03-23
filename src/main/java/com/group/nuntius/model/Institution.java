@@ -13,4 +13,17 @@ public class Institution {
     private String name;
     private String bic;
 
+    public Institution(String name, String bic) {
+        this.name = name;
+        this.bic = bic;
+    }
+
+    @Override
+    public String toString() {
+        return "Institution{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", bic='" + bic + '\'' +
+                '}';
+    }
 }
