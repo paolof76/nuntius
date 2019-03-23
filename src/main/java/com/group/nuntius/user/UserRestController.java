@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/user")
 public class UserRestController {
 
-    @RequestMapping("/hello/{name}")
-    public String hello(@PathVariable String name) {
-        return "Hello, " + name + "!";
+    @RequestMapping("/info")
+    public String hello() {
+        return "Userinfo";
     }
-
 
 }
