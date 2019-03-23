@@ -17,15 +17,10 @@ public class Account {
     @JoinColumn(name="client_id", nullable=false)
     private Client client;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "card_id", referencedColumnName = "id")
-    private Card card;
-
-    public Account(Institution institution, String iban, Client client, Card card) {
+    public Account(Institution institution, String iban, Client client) {
         this.institution = institution;
         this.iban = iban;
         this.client = client;
-        this.card = card;
     }
 
     public Long getId() {
@@ -40,12 +35,24 @@ public class Account {
         return iban;
     }
 
-    public Card getCard() {
-        return card;
-    }
-
     public Client getClient() {
         return client;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setInstitution(Institution institution) {
+        this.institution = institution;
+    }
+
+    public void setIban(String iban) {
+        this.iban = iban;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override

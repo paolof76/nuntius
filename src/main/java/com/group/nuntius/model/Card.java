@@ -14,6 +14,10 @@ public class Card {
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
+
     public Card(String cardNumber, String expirationDate, Client client) {
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
@@ -34,6 +38,30 @@ public class Card {
 
     public Client getClient() {
         return client;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override
