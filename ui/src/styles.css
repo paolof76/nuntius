@@ -8,6 +8,6 @@ main {
   flex: 1 0 auto;
 }
 
-.card.small .card-content{
+#overflow-visible{
   overflow: visible;
 }
