@@ -1,6 +1,6 @@
 package com.group.nuntius.service;
 
-import com.group.nuntius.model.Account;
+import com.group.nuntius.model.BankAccount;
 import com.group.nuntius.model.Institution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,10 +31,10 @@ public class InstitutionRestController {
 
     @RequestMapping(value = "/notUsed", method = RequestMethod.GET)
     public Iterable<Institution> getNotYetLinkedInstitutions() {
-        List<Account> accounts = new ArrayList<>();
-        accountRepository.findAll().forEach(accounts::add);
-        Set<Institution> alreadyUsedInstitutions = accounts.stream()
-                .map(Account::getInstitution).collect(Collectors.toSet());
+        List<BankAccount> bankAccounts = new ArrayList<>();
+        accountRepository.findAll().forEach(bankAccounts::add);
+        Set<Institution> alreadyUsedInstitutions = bankAccounts.stream()
+                .map(BankAccount::getInstitution).collect(Collectors.toSet());
 
         List<Institution> institutions = new ArrayList<>();
         intitutionRepository.findAll().forEach(institutions::add);
