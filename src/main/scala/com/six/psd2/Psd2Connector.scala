@@ -150,23 +150,9 @@ object Psd2Connector extends Psd2Trait {
 
   def createAccount(token: String, accountNo: String, bank: String, amount: String, currency: String) = {
     val createAccountUrl = s"banks/${bank}/accounts/${accountNo}"
-    val userId = getUserId(token)
+    val userId = getUserId(token) //"label":"SomeLabel"
 
-    val body = s"""
-    {
-      "user_id": "$userId",
-      "label": "Label",
-      "type": "CURRENT",
-      "balance": {
-        "currency": "$currency",
-        "amount": "0"
-      },
-      "branch_id": "1234",
-      "account_routing": {
-        "scheme": "OBP",
-        "address": "UK123456"
-      }
-    }"""
+    val body = s"""{"user_id":"$userId","type":"CURRENT","balance":{"currency":"EUR","amount":"0"},"branch_id": "1234"}"""
 
     println(body)
     val resp = queryAnyPut(createAccountUrl, token, body)
@@ -189,6 +175,15 @@ object Psd2Connector extends Psd2Trait {
     (json \ "user_id").extractOrElse("")
 
   }
+
+  def getAccountById(token: String, accountNo: String) = {
+    val accountByIdUrl = s"my/banks/psd201-bank-x--uk/accounts/${accountNo}/account"
+    val resp = queryAnyGet(accountByIdUrl, token)
+
+    println(resp)
+  }
+
+
 
 }
 

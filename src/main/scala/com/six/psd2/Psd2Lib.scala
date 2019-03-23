@@ -21,7 +21,8 @@ object Psd2Lib extends Psd2Trait {
 
   def main(args: Array[String]): Unit = {
     println(getAvailableFunds("100008", 50.0, "EUR"))
-    createAccount(token.key, "1000020", bank, "300", "EUR")
+    createAccount(token.key, "1000025", bank, "300", "EUR")
+    getAccountById(token.key, "100008")
   }
 
   private def checkToken(): Boolean = {
@@ -43,7 +44,6 @@ object Psd2Lib extends Psd2Trait {
       availFunds(token.key, bank, account, viewId, amount.toString.filter(_!='.'), currency)
     }
     else Optional.empty()
-
 
   }
 
