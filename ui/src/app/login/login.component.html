@@ -2,13 +2,13 @@
 <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
   <mz-input-container>
     <input mz-input
-           id="username"
-           formControlName="username"
-           label="Username"
+           id="email"
+           formControlName="email"
+           label="E-Mail"
            length="150"
            validate="true"
            [disabled]="isSubmitting"
-           type="text"/>
+           type="email"/>
   </mz-input-container>
   <mz-input-container>
     <input mz-input
