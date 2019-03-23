@@ -52,6 +52,16 @@ public class AccountRestController {
         } else {
             throw new RuntimeException("Could not find institution for id " + institutionId);
         }
+    }
 
+    @RequestMapping(value = "/transfer", method = RequestMethod.GET)
+    public void transfer(@RequestParam("client") Long clientId,
+                         @RequestParam("fromAccount") Long fromAccount,
+                         @RequestParam("toAccount") Long toAccount,
+                         @RequestParam("amount") Double amount) throws Exception {
+        Client client = clientRepository.findById(clientId).orElseThrow(() -> new Exception("Could not find client"));
+        Account from = accountRepository.findById(fromAccount).orElseThrow(() -> new Exception("Could not find source account"));
+        Account to = accountRepository.findById(toAccount).orElseThrow(() -> new Exception("Could not find target account"));
+        // call lib here
     }
 }

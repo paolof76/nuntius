@@ -9,7 +9,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-//@EnableWebMvc
 public class NuntiusApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
