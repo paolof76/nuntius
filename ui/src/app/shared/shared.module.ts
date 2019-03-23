@@ -13,10 +13,7 @@ import {MzButtonModule, MzDropdownModule} from 'ngx-materialize';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule,
-    BrowserAnimationsModule,
-    MzDropdownModule,
-    MzButtonModule
+    RouterModule
   ],
   exports: [
     CommonModule,

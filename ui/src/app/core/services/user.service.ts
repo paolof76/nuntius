@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
 
-import {User} from '../models';
+import {User, Account} from '../models';
 import {distinctUntilChanged, map} from 'rxjs/operators';
 import {ApiService} from "./api.service";
 import {HttpClient, HttpParams} from "@angular/common/http";
@@ -27,10 +27,14 @@ export class UserService {
   }
 
   login(credentials): Observable<User> {
-    return this.apiService.get('/client/login?email=' + credentials.email)
+    return this.apiService.get('/client/login?email=' + credentials.username)
       .pipe(map(
         data => {
-          this.currentUserSubject.next({id: data, username: credentials.username, password: credentials.password} as User);
+          this.currentUserSubject.next({
+            id: data,
+            username: credentials.username,
+            password: credentials.password
+          } as User);
           this.isLoggedInSubject.next(true);
           return data;
         }
