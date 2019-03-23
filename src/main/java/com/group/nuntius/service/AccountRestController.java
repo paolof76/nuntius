@@ -4,10 +4,7 @@ import com.group.nuntius.model.Account;
 import com.group.nuntius.model.Client;
 import com.group.nuntius.model.Institution;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/account")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AccountRestController {
 
     @Autowired
@@ -52,6 +50,16 @@ public class AccountRestController {
         } else {
             throw new RuntimeException("Could not find institution for id " + institutionId);
         }
+    }
 
+    @RequestMapping(value = "/transfer", method = RequestMethod.GET)
+    public void transfer(@RequestParam("client") Long clientId,
+                         @RequestParam("fromAccount") Long fromAccount,
+                         @RequestParam("toAccount") Long toAccount,
+                         @RequestParam("amount") Double amount) throws Exception {
+        Client client = clientRepository.findById(clientId).orElseThrow(() -> new Exception("Could not find client"));
+        Account from = accountRepository.findById(fromAccount).orElseThrow(() -> new Exception("Could not find source account"));
+        Account to = accountRepository.findById(toAccount).orElseThrow(() -> new Exception("Could not find target account"));
+        // call lib here
     }
 }

@@ -1,5 +1,6 @@
 package com.group.nuntius.service;
 
+import com.group.nuntius.Tools;
 import com.group.nuntius.model.Client;
 import org.springframework.data.repository.CrudRepository;
 
@@ -11,7 +12,6 @@ public interface ClientRepository extends CrudRepository<Client, Long> {
     List<Client> findByEmail(String email);
 
     default Optional<Client> getByEmail(String email) {
-        List<Client> clients = findByEmail(email);
-        return clients.isEmpty() ? Optional.empty() : Optional.ofNullable(clients.get(0));
+        return Tools.getFirst(findByEmail(email));
     }
 }

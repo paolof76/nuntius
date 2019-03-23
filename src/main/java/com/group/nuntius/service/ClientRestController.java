@@ -16,6 +16,10 @@ public class ClientRestController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public Long login(@RequestParam("email") String email) {
+        if (email == null || email.trim().isEmpty() || !email.contains("@")) {
+            throw new IllegalArgumentException("Email '" + email + "' invalid!");
+        }
+
         return clientRepository.getByEmail(email).orElse(clientRepository.save(new Client(email, email))).getId();
     }
 
