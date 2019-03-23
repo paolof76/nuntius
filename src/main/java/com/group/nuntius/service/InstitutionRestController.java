@@ -11,7 +11,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/institution")
 public class InstitutionRestController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class InstitutionRestController {
         return institutions;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/notUsed", method = RequestMethod.GET)
     public Iterable<Institution> getNotYetLinkedInstitutions() {
         List<Account> accounts = new ArrayList<>();
         accountRepository.findAll().forEach(accounts::add);
