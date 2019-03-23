@@ -27,6 +27,9 @@ export class AccountComponent implements OnInit {
     );
 
     this.accounts.push({id: 1} as Account);
+    this.accounts.push({id: 2} as Account);
+    this.accounts.push({id: 3} as Account);
+    this.accounts.push({id: 4} as Account);
   }
 
 }
