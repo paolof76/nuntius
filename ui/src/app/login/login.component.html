@@ -1,0 +1,27 @@
+<h2>Access your accounts</h2>
+<form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+  <mz-input-container>
+    <input mz-input
+           formControlName="email"
+           label="E-Mail"
+           length="150"
+           id="email"
+           validate="true"
+           [disabled]="isSubmitting"
+           type="email"/>
+  </mz-input-container>
+  <mz-input-container>
+    <input mz-input
+           formControlName="password"
+           label="Password"
+           length="150"
+           id="password"
+           [disabled]="isSubmitting"
+           type="password"/>
+  </mz-input-container>
+  <mz-input-container>
+    <button mz-button [disabled]="!loginForm.valid" type="submit">
+      Login!
+    </button>
+  </mz-input-container>
+</form>

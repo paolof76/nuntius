@@ -1,0 +1,31 @@
+<header>
+  <mz-dropdown
+    *appShowLoggedIn="true"
+    [align]="'left'"
+    [belowOrigin]="true"
+    [constrainWidth]="true"
+    [dropdownButtonId]="'btn-dropdown-demo'"
+    [gutter]="true"
+    [hover]="true"
+    [id]="'dropdown-demo'"
+    [inDuration]="300"
+    [outDuration]="300"
+    [stopPropagation]="true">
+    <mz-dropdown-item>
+      <a (click)="userService.logout()" routerLink="/">logout</a>
+    </mz-dropdown-item>
+  </mz-dropdown>
+  <nav>
+    <div class="nav-wrapper">
+      <a routerLink="/" class="brand-logo">Nuntius</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <a routerLink="/login" routerLinkActive="active" *appShowLoggedIn="false">Login</a>
+        </li>
+        <li>
+          <a *appShowLoggedIn="true" id="btn-dropdown-demo" mz-button>{{currentUser.email}}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
