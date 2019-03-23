@@ -20,7 +20,11 @@ public class ClientRestController {
             throw new IllegalArgumentException("Email '" + email + "' invalid!");
         }
 
-        return clientRepository.getByEmail(email).orElse(clientRepository.save(new Client(email, email))).getId();
+        Optional<Client> client = clientRepository.getByEmail(email);
+        if(client.isPresent()) {
+            return client.get().getId();
+        }
+        return clientRepository.save(new Client(email, email)).getId();
     }
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
