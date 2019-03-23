@@ -9,10 +9,12 @@ import {
 import {HomeModule} from './home/home.module';
 import {CoreModule} from './core';
 import {LoginModule} from './login/login.module';
+import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
+    BrowserModule,
     CoreModule,
     SharedModule,
     HomeModule,

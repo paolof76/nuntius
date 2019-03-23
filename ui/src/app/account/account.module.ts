@@ -2,16 +2,14 @@ import {NgModule} from '@angular/core';
 import {AccountRoutingModule} from "./account-routing.module";
 import {AccountComponent} from "./account.component";
 import {CommonModule} from "@angular/common";
-import {MzCardModule} from "ngx-materialize";
+import {SharedModule} from "../shared";
 
 @NgModule({
+  declarations: [AccountComponent],
   imports: [
     CommonModule,
-    AccountRoutingModule,
-    MzCardModule
-  ],
-  declarations: [
-    AccountComponent
+    SharedModule,
+    AccountRoutingModule
   ]
 })
 export class AccountModule {

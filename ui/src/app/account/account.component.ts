@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User, Account} from "../core/models";
 import {UserService} from "../core/services";
 import {ApiService} from "../core/services/api.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-account',
@@ -10,12 +11,17 @@ import {ApiService} from "../core/services/api.service";
 export class AccountComponent implements OnInit {
   accounts: Account[];
   currentUser: User;
+  accountForm: FormGroup;
 
   constructor(
     private userService: UserService,
-    private apiSerice: ApiService
+    private apiService: ApiService,
+    private fb: FormBuilder
   ) {
     this.accounts = new Array<Account>();
+    this.accountForm = this.fb.group({
+      institutionId: ['', Validators.required]
+    });
   }
 
   ngOnInit() {
@@ -32,4 +38,7 @@ export class AccountComponent implements OnInit {
     this.accounts.push({id: 4} as Account);
   }
 
+  submitForm() {
+    console.log(this.accountForm.value)
+  }
 }
