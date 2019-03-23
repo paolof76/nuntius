@@ -13,7 +13,7 @@ public class ClientRestController {
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public Client getById(@RequestParam Long id) {
-        return clientRepository.findById(id).get();
+        return clientRepository.findById(id).orElse(null);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)

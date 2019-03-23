@@ -13,6 +13,9 @@ public class Institution {
     private String name;
     private String bic;
 
+    public Institution() {
+    }
+
     public Institution(String name, String bic) {
         this.name = name;
         this.bic = bic;

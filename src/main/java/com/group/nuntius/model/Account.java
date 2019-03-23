@@ -17,6 +17,9 @@ public class Account {
     @JoinColumn(name="client_id", nullable=false)
     private Client client;
 
+    public Account() {
+    }
+
     public Account(Institution institution, String iban, Client client) {
         this.institution = institution;
         this.iban = iban;

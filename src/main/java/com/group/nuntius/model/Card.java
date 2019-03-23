@@ -18,6 +18,9 @@ public class Card {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
+    public Card() {
+    }
+
     public Card(String cardNumber, String expirationDate, Client client) {
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;

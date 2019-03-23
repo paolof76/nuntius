@@ -24,6 +24,9 @@ public class Client {
     @OneToMany(targetEntity=Account.class, mappedBy="client", fetch=FetchType.EAGER)
     private List<Account> accounts;
 
+    public Client() {
+    }
+
     public Client(String email, String password) {
         this.email = email;
         this.password = password;
