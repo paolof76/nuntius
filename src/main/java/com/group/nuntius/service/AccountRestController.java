@@ -3,8 +3,11 @@ package com.group.nuntius.service;
 import com.group.nuntius.model.Account;
 import com.group.nuntius.model.Client;
 import com.group.nuntius.model.Institution;
+import com.group.nuntius.obp.clientapi.DirectAuthenticationClient;
+import com.group.nuntius.obp.clientapi.ObpApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +24,11 @@ public class AccountRestController {
     private InstitutionRepository institutionRepository;
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private DirectAuthenticationClient directAuthenticationClient;
+    @Autowired
+    private ObpApiClient obiApiClient;
 
     // /info/123 -> PathParam
     // /info?id=123 -> RequestParam
@@ -42,6 +50,7 @@ public class AccountRestController {
 
         if (institution.isPresent() && client.isPresent()) {
             // call library to create account
+
             String iban = "testIban";
             Account account = new Account(institution.get(), iban, client.get());
             accountRepository.save(account);
@@ -61,5 +70,17 @@ public class AccountRestController {
         Account from = accountRepository.findById(fromAccount).orElseThrow(() -> new Exception("Could not find source account"));
         Account to = accountRepository.findById(toAccount).orElseThrow(() -> new Exception("Could not find target account"));
         // call lib here
+    }
+
+    @RequestMapping(value = "/obi", method = RequestMethod.GET)
+    public void obi() {
+        String token = directAuthenticationClient.login("nuntius", "@Nuntius1234",
+                "o153kts4lby2cej3z4cm5d4lrlai0k5xrh4ewk03");
+
+
+        System.out.println(token);
+        System.out.println(obiApiClient.getCurrentUser());
+
+
     }
 }

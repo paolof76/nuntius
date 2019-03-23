@@ -4,7 +4,6 @@ import java.io.{File, PrintWriter}
 import java.time.{LocalDate, LocalDateTime}
 
 import com.typesafe.config.ConfigFactory
-import com.typesafe.scalalogging.LazyLogging
 
 import scala.collection.mutable.{ListBuffer, Map}
 import scala.util.{Failure, Success, Try}
@@ -15,7 +14,7 @@ object Psd2Trait {
 
   case class Token(key: String, datetime: LocalDateTime)
 }
-trait Psd2Trait extends LazyLogging {
+trait Psd2Trait {
 
   val conf = ConfigFactory.load()
 
