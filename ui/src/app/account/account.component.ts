@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User, Account} from "../core/models";
-import {UserService} from "../core/services";
+import {AccountService, UserService} from "../core/services";
 import {ApiService} from "../core/services/api.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
@@ -15,6 +15,7 @@ export class AccountComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private accountService: AccountService,
     private apiService: ApiService,
     private fb: FormBuilder
   ) {
@@ -26,16 +27,13 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
     // Load the current user's data
-    this.userService.currentUser.subscribe(
-      (userData: User) => {
-        this.currentUser = userData;
+    console.log('userid:'+ this.userService.getCurrentUser().id);
+    this.accountService.getAccounts(this.userService.getCurrentUser().id).subscribe(
+      data => {
+        console.log(data)
+        this.accounts = data;
       }
     );
-
-    this.accounts.push({id:1,institution:'UBX',iban:'CH34 0500 0000 1234 2324 6',amount:10000,currency:'CHF',interestRate:'0%'} as Account);
-    this.accounts.push({id:2,institution:'SCC',iban:'CH34 0500 0000 1234 5656 6',amount:20000,currency:'CHF',interestRate:'0%'} as Account);
-    this.accounts.push({id:3,institution:'SER',iban:'CH34 0500 0000 1234 3434 6',amount:3000,currency:'EUR',interestRate:'0%'} as Account);
-    this.accounts.push({id:4,institution:'AAA',iban:'CH34 0500 0000 1234 8989 6',amount:5000,currency:'USD',interestRate:'0.5%'} as Account);
   }
 
   submitForm() {

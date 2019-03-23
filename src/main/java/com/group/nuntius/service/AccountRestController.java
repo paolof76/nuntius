@@ -40,7 +40,11 @@ public class AccountRestController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<BankAccount> getAll(@RequestParam("client") Long clientId) {
-        return clientRepository.findById(clientId).map(Client::getBankAccounts).orElse(Collections.emptyList());
+        Client client = clientRepository.findById(clientId).orElse(null);
+        if(client == null)
+            return Collections.emptyList();
+
+        return accountRepository.findByClient(client);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -55,11 +59,9 @@ public class AccountRestController {
             Long initialAmount = 10000L;
             String interesRate = "0%";
             String currency = "CHF";
-            LocalDate creationDate = LocalDate.of(2019, 3, 24);
-            LocalDate validUntil = LocalDate.of(2020, 3, 24);
 
             BankAccount bankAccount = new BankAccount(institution.get(), iban, initialAmount,
-                    interesRate, currency, creationDate, validUntil, client.get());
+                    interesRate, currency, client.get());
             accountRepository.save(bankAccount);
             return bankAccount;
 

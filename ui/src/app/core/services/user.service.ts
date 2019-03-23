@@ -22,6 +22,10 @@ export class UserService {
     this.isLoggedInSubject.next(false);
   }
 
+  getCurrentUser(){
+    return this.currentUserSubject.value;
+  }
+
   login(credentials): Observable<User> {
     return this.apiService.get('/client/login?email=' + credentials.email)
       .pipe(map(

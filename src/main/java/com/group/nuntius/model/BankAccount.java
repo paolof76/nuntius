@@ -17,25 +17,20 @@ public class BankAccount {
     private String currency;
     //example 0.5% for now is fine
     private String interestRate;
-    private LocalDate creationDate;
-    private LocalDate specialConditionsExpiresOn;
 
-    @ManyToOne
-    @JoinColumn(name="client_id", nullable=false)
+    @ManyToOne()
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
     public BankAccount() {
     }
 
-    public BankAccount(Institution institution, String iban, Long amount, String currency, String interestRate,
-                       LocalDate creationDate, LocalDate specialConditionsExpiresOn, Client client) {
+    public BankAccount(Institution institution, String iban, Long amount, String currency, String interestRate, Client client) {
         this.institution = institution;
         this.iban = iban;
         this.amount = amount;
         this.currency = currency;
         this.interestRate = interestRate;
-        this.creationDate = creationDate;
-        this.specialConditionsExpiresOn = specialConditionsExpiresOn;
         this.client = client;
     }
 
@@ -85,22 +80,6 @@ public class BankAccount {
 
     public void setInterestRate(String interestRate) {
         this.interestRate = interestRate;
-    }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public LocalDate getSpecialConditionsExpiresOn() {
-        return specialConditionsExpiresOn;
-    }
-
-    public void setSpecialConditionsExpiresOn(LocalDate specialConditionsExpiresOn) {
-        this.specialConditionsExpiresOn = specialConditionsExpiresOn;
     }
 
     public Client getClient() {

@@ -1,3 +1,19 @@
-<p>
-  account-add works!
-</p>
+<h2>Add Account</h2>
+<form [formGroup]="accountForm" (ngSubmit)="formSubmit()" *appShowLoggedIn="true">
+  <mz-select-container>
+    <select mz-select
+            id="institutionId"
+            formControlName="institutionId"
+            [label]="'Institution'"
+            [placeholder]="'Select...'"
+            [disabled]="isSubmitting">
+      <option *ngFor="let institution of institutions" value="{{institution.id}}">{{institution.name}}</option>
+    </select>
+  </mz-select-container>
+  <mz-input-container>
+    <button mz-button [disabled]="!accountForm.valid" type="submit">
+      Add!
+    </button>
+  </mz-input-container>
+</form>
+<p *appShowLoggedIn="false">Your are not logged in!</p>
