@@ -1,12 +1,12 @@
 package com.group.nuntius;
 
+import com.group.nuntius.service.InstitutionRepository;
+import com.group.nuntius.service.Setup;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 //@EnableWebMvc
@@ -14,13 +14,18 @@ public class NuntiusApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         System.setProperty("spring.config.location", "target/application.properties");
-        SpringApplication.run(NuntiusApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(NuntiusApplication.class, args);
+
+        Setup setup = new Setup(context.getBean(InstitutionRepository.class));
+        setup.createExampleInstitutions();
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(NuntiusApplication.class);
     }
+
+
 }
 
 

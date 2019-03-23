@@ -1,5 +1,10 @@
 package com.group.nuntius;
 
+public class CustomAuthenticationProvider {
+
+}
+
+/*
 import com.group.nuntius.model.Client;
 import com.group.nuntius.service.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,3 +42,4 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 }
+*/

@@ -1,6 +1,7 @@
 package com.group.nuntius.service;
 
 import com.group.nuntius.model.Account;
+import com.group.nuntius.model.Client;
 import com.group.nuntius.model.Institution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -19,7 +22,7 @@ public class AccountRestController {
     @Autowired
     private InstitutionRepository institutionRepository;
     @Autowired
-    private UserService userService;
+    private ClientRepository clientRepository;
 
     // /info/123 -> PathParam
     // /info?id=123 -> RequestParam
@@ -29,13 +32,20 @@ public class AccountRestController {
         return accountRepository.findById(id).orElse(null);
     }
 
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public List<Account> getAll(@RequestParam("client") Long clientId) {
+        return clientRepository.findById(clientId).map(Client::getAccounts).orElse(Collections.emptyList());
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public Account create(@RequestParam("institution") Long institutionId) {
+    public Account create(@RequestParam("client") Long clientId, @RequestParam("institution") Long institutionId) {
         Optional<Institution> institution = institutionRepository.findById(institutionId);
-        if (institution.isPresent()) {
+        Optional<Client> client = clientRepository.findById(clientId);
+
+        if (institution.isPresent() && client.isPresent()) {
             // call library to create account
             String iban = "testIban";
-            Account account = new Account(institution.get(), iban, userService.getClient());
+            Account account = new Account(institution.get(), iban, client.get());
             accountRepository.save(account);
             return account;
 
