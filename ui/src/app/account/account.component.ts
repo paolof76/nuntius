@@ -32,10 +32,10 @@ export class AccountComponent implements OnInit {
       }
     );
 
-    this.accounts.push({id: 1} as Account);
-    this.accounts.push({id: 2} as Account);
-    this.accounts.push({id: 3} as Account);
-    this.accounts.push({id: 4} as Account);
+    this.accounts.push({id:1,institution:'UBX',iban:'CH34 0500 0000 1234 2324 6',amount:10000,currency:'CHF',interestRate:'0%'} as Account);
+    this.accounts.push({id:2,institution:'SCC',iban:'CH34 0500 0000 1234 5656 6',amount:20000,currency:'CHF',interestRate:'0%'} as Account);
+    this.accounts.push({id:3,institution:'SER',iban:'CH34 0500 0000 1234 3434 6',amount:3000,currency:'EUR',interestRate:'0%'} as Account);
+    this.accounts.push({id:4,institution:'AAA',iban:'CH34 0500 0000 1234 8989 6',amount:5000,currency:'USD',interestRate:'0.5%'} as Account);
   }
 
   submitForm() {
