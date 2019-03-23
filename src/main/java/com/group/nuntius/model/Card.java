@@ -1,9 +1,6 @@
 package com.group.nuntius.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Card {
@@ -11,15 +8,32 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String cardNumber;
-    private Account account;
     private String expirationDate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
 
-    public Card(String cardNumber, Account account, String expirationDate, Client client) {
+    public Card(String cardNumber, String expirationDate, Client client) {
         this.cardNumber = cardNumber;
-        this.account = account;
         this.expirationDate = expirationDate;
         this.client = client;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    public Client getClient() {
+        return client;
     }
 
     @Override
@@ -27,7 +41,6 @@ public class Card {
         return "Card{" +
                 "id=" + id +
                 ", cardNumber='" + cardNumber + '\'' +
-                ", account=" + account +
                 ", expirationDate='" + expirationDate + '\'' +
                 ", client=" + client +
                 '}';

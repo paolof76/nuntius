@@ -18,6 +18,18 @@ public class Institution {
         this.bic = bic;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getBic() {
+        return bic;
+    }
+
     @Override
     public String toString() {
         return "Institution{" +
