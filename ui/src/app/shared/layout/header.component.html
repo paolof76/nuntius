@@ -12,13 +12,19 @@
     [outDuration]="300"
     [stopPropagation]="true">
     <mz-dropdown-item>
-      <a (click)="userService.logout()" routerLink="/">logout</a>
+      <a (click)="userService.logout()" routerLink="/">Logout</a>
     </mz-dropdown-item>
   </mz-dropdown>
+  <style>
+
+  </style>
   <nav>
     <div class="nav-wrapper">
-      <a routerLink="/" class="brand-logo">Nuntius</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <a routerLink="/" class="brand-logo" style="padding-left:20px; color:#80ab86">Nuntius</a>
+      <a href="https://www.openbankproject.com" style="padding-left: 150px; text-align: bottom; font-size: 11px; color:white">
+        Powered by the Open Bank Project API
+      </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
           <a routerLink="/login" routerLinkActive="active" *appShowLoggedIn="false">Login</a>
         </li>

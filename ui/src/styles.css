@@ -11,3 +11,44 @@ main {
 #overflow-visible{
   overflow: visible;
 }
+
+
+nav {
+  background-color: #0000008f !important;
+}
+
+.page-footer {
+  padding-top: 0px !important;
+  background-color: #0000008f !important;
+}
+
+#cardContainer {
+  background-image: url("https://blog.aspiresys.com/wp-content/uploads/2017/06/happy-customer.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn {
+  background-color: #848484 !important;
+  text-transform: none !important;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+  color: black !important;
+}
+
+.blue-grey.darken-1 {
+  background-color: #45474896 !important;
+}
+
+h2 {
+  color: #80ab86;
+}
+
+a {
+color: #80ab86;
+}
+
+.card-title {
+color: #80ab86 !important;
+}
