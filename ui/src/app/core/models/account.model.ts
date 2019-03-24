@@ -1,12 +1,12 @@
 import {Institution} from "./institution.model";
+import {User} from "./user.model";
 
 export interface Account {
+  amount: number;
+  client: User;
+  currency: string;
+  iban: string;
   id: number;
   institution: Institution;
-  iban: string;
-  amount: number;
-  currency: string;
   interestRate: string;
-  creationDate: string;
-  specialConditionsExpiresOn: string;
 }
