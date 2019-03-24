@@ -1,6 +1,7 @@
 package com.group.nuntius;
 
 import com.group.nuntius.service.InstitutionRepository;
+import com.group.nuntius.service.PromotionRepository;
 import com.group.nuntius.service.Setup;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,6 +20,7 @@ public class NuntiusApplication extends SpringBootServletInitializer {
 
         Setup setup = new Setup(context);
         setup.createExampleInstitutions();
+        setup.createExampleOfPromotion();
     }
 
     @Override

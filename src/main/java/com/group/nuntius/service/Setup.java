@@ -13,11 +13,13 @@ public class Setup {
     private DirectAuthenticationClient directAuthenticationClient;
     private ObpBankMetaApiClient obpBankMetaApiClient;
     private InstitutionRepository institutionRepository;
+    private PromotionRepository promotionRepository;
 
     public Setup(ConfigurableApplicationContext context) {
         this.directAuthenticationClient = context.getBean(DirectAuthenticationClient.class);
         this.obpBankMetaApiClient = context.getBean(ObpBankMetaApiClient.class);
         this.institutionRepository = context.getBean(InstitutionRepository.class);
+        this.promotionRepository = context.getBean(PromotionRepository.class);
     }
 
     public void createExampleInstitutions() {
@@ -33,6 +35,14 @@ public class Setup {
 
         ObpBankMetaApiClient.Banks banks = obpBankMetaApiClient.getBanks(token);
         banks.getBanks().forEach(bank -> createInstitution(bank.getFullName(), bank.getShortName(), bank.getId()));
+    }
+
+    public void createExampleOfPromotion() {
+        Institution institution = institutionRepository.getByName("United Web Bank").get();
+        Promotion promotion = new Promotion(
+                "GETIT!", "Be in the first thousand to subscribe and you will have free trasfer fees for a jear!",
+                institution, 0L, 1000L, 350L);
+        promotionRepository.save(promotion);
     }
 
     private void createInstitution(String name, String abbreviation, String bic) {

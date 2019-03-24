@@ -7,17 +7,20 @@ public class Promotion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String code;
     private String message;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "institution_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.MERGE)
     private Institution institution;
-    private Long minimalPartecipationCount;
+    private Long minCount;
+    private Long maxCount;
     private Long currentCount;
 
-    public Promotion(String message, Institution institution, Long minimalPartecipationCount, Long currentCount) {
+    public Promotion(String code, String message, Institution institution, Long minCount, Long maxCount, Long currentCount) {
+        this.code = code;
         this.message = message;
         this.institution = institution;
-        this.minimalPartecipationCount = minimalPartecipationCount;
+        this.minCount = minCount;
+        this.maxCount = maxCount;
         this.currentCount = currentCount;
     }
 
@@ -27,6 +30,14 @@ public class Promotion {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMessage() {
@@ -45,12 +56,20 @@ public class Promotion {
         this.institution = institution;
     }
 
-    public Long getMinimalPartecipationCount() {
-        return minimalPartecipationCount;
+    public Long getMinCount() {
+        return minCount;
     }
 
-    public void setMinimalPartecipationCount(Long minimalPartecipationCount) {
-        this.minimalPartecipationCount = minimalPartecipationCount;
+    public void setMinCount(Long minCount) {
+        this.minCount = minCount;
+    }
+
+    public Long getMaxCount() {
+        return maxCount;
+    }
+
+    public void setMaxCount(Long maxCount) {
+        this.maxCount = maxCount;
     }
 
     public Long getCurrentCount() {
