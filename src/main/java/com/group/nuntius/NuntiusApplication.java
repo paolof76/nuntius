@@ -1,6 +1,7 @@
 package com.group.nuntius;
 
 import com.group.nuntius.service.InstitutionRepository;
+import com.group.nuntius.service.PromotionRepository;
 import com.group.nuntius.service.Setup;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,8 +18,11 @@ public class NuntiusApplication extends SpringBootServletInitializer {
         System.setProperty("spring.config.location", "target/application.properties");
         ConfigurableApplicationContext context = SpringApplication.run(NuntiusApplication.class, args);
 
-        Setup setup = new Setup(context.getBean(InstitutionRepository.class));
+        Setup setup = new Setup(
+                context.getBean(InstitutionRepository.class),
+                context.getBean(PromotionRepository.class));
         setup.createExampleInstitutions();
+        setup.createExampleOfPromotion();
     }
 
     @Override

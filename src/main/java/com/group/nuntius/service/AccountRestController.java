@@ -30,9 +30,6 @@ public class AccountRestController {
     @Autowired
     private ObpApiClient obiApiClient;
 
-    // /info/123 -> PathParam
-    // /info?id=123 -> RequestParam
-
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public BankAccount info(@RequestParam("id") Long id) {
         return accountRepository.findById(id).orElse(null);
