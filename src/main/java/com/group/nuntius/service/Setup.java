@@ -1,12 +1,12 @@
 package com.group.nuntius.service;
 
 import com.group.nuntius.model.Institution;
+import com.group.nuntius.model.Promotion;
 import com.group.nuntius.obp.clientapi.DirectAuthenticationClient;
-import com.group.nuntius.obp.clientapi.ObpApiClient;
 import com.group.nuntius.obp.clientapi.ObpBankMetaApiClient;
-import com.group.nuntius.obp.domain.Bank;
-import com.group.nuntius.obp.domain.User;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.Optional;
 
 public class Setup {
 
@@ -38,11 +38,21 @@ public class Setup {
     }
 
     public void createExampleOfPromotion() {
-        Institution institution = institutionRepository.getByName("United Web Bank").get();
-        Promotion promotion = new Promotion(
-                "GETIT!", "Be in the first thousand to subscribe and you will have free trasfer fees for a jear!",
-                institution, 0L, 1000L, 350L);
-        promotionRepository.save(promotion);
+        Optional<Institution> institutionOptional = institutionRepository.getByName("United Web Bank");
+
+        if (institutionOptional.isPresent() && promotionRepository.findByCode("GET IT TOO!").isEmpty()) {
+            Institution institution = institutionOptional.get();
+
+            Promotion promotion = new Promotion(
+                    "GET IT TOO!",
+                    "Be in the first thousand to subscribe and you will have free transfer fees for a year!",
+                    institution,
+                    0L,
+                    1000L,
+                    350L);
+
+            promotionRepository.save(promotion);
+        }
     }
 
     private void createInstitution(String name, String abbreviation, String bic) {
