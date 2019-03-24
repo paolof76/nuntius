@@ -17,7 +17,7 @@ public class NuntiusApplication extends SpringBootServletInitializer {
         System.setProperty("spring.config.location", "target/application.properties");
         ConfigurableApplicationContext context = SpringApplication.run(NuntiusApplication.class, args);
 
-        Setup setup = new Setup(context.getBean(InstitutionRepository.class));
+        Setup setup = new Setup(context);
         setup.createExampleInstitutions();
     }
 

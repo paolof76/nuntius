@@ -5,10 +5,16 @@ import com.group.nuntius.model.Client;
 import com.group.nuntius.model.Institution;
 import com.group.nuntius.obp.clientapi.DirectAuthenticationClient;
 import com.group.nuntius.obp.clientapi.ObpApiClient;
+import com.group.nuntius.obp.clientapi.ObpBankMetaApiClient;
+import com.group.nuntius.obp.domain.Account;
+import com.group.nuntius.obp.domain.AccountRouting;
+import com.group.nuntius.obp.domain.Bank;
+import com.group.nuntius.obp.domain.User;
+import org.joda.money.CurrencyUnit;
+import org.joda.money.Money;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +34,9 @@ public class AccountRestController {
     @Autowired
     private DirectAuthenticationClient directAuthenticationClient;
     @Autowired
-    private ObpApiClient obiApiClient;
+    private ObpApiClient obpApiClient;
+    @Autowired
+    private ObpBankMetaApiClient obpBankMetaApiClient;
 
     // /info/123 -> PathParam
     // /info?id=123 -> RequestParam
@@ -86,10 +94,35 @@ public class AccountRestController {
         String token = directAuthenticationClient.login("nuntius", "@Nuntius1234",
                 "o153kts4lby2cej3z4cm5d4lrlai0k5xrh4ewk03");
 
+        token = "DirectLogin token=" + token;
+
+        User user = obpApiClient.getCurrentUser(token);
+        ObpBankMetaApiClient.Banks banks = obpBankMetaApiClient.getBanks(token);
+        Bank bank = banks.getBanks().get(0);
+
+        String accountId = "myaccount" + Math.random();
 
         System.out.println(token);
-        System.out.println(obiApiClient.getCurrentUser());
+        System.out.println(user);
+        System.out.println(banks);
 
+        AccountRouting accountRouting = new AccountRouting();
+        accountRouting.setAddress("UK123456");
+        accountRouting.setScheme("OBP");
 
+        Account account = new Account();
+        account.setId(accountId);
+        account.setBic("ABC12345");
+        account.setBranchId("UK123456");
+        account.setIban("CH0012345678901234560");
+        account.setBalance(Money.of(CurrencyUnit.EUR, 0));
+        account.setBankId(bank.getId());
+        account.setLabel("TestAccount");
+        account.setType("CURRENT");
+        account.setUserId(user.getUserId());
+//        account.setBranchId(bank.getBranches().get(0).getId());
+        account.setAccountRouting(accountRouting);
+
+        System.out.println(obpApiClient.createAccount(token, bank.getId(), accountId, account));
     }
 }

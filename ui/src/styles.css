@@ -51,4 +51,5 @@ color: #80ab86;
 
 .card-title {
 color: #80ab86 !important;
+min-height: 60px;
 }
